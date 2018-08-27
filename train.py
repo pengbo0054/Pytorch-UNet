@@ -71,7 +71,7 @@ def train_net(net,
             if gpu:
                 imgs = imgs.cuda()
                 true_masks = true_masks.cuda()
-
+            print(imgs.shape, true_masks.shape)
             masks_pred = net(imgs)
             print(imgs.shape,masks_pred.shape)
             masks_probs = F.sigmoid(masks_pred)
