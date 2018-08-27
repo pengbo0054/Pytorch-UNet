@@ -67,7 +67,7 @@ def train_net(net,
             
             imgs = torch.from_numpy(imgs)
             true_masks = torch.from_numpy(true_masks)
-            print(imgs.shape,true_masks.shape)
+            
             if gpu:
                 imgs = imgs.cuda()
                 true_masks = true_masks.cuda()
@@ -75,7 +75,7 @@ def train_net(net,
             masks_pred = net(imgs)
             masks_probs = F.sigmoid(masks_pred)
             masks_probs_flat = masks_probs.view(-1)
-
+            print(masks_probs.shape,true_masks.shape)
             true_masks_flat = true_masks.view(-1)
             print(masks_probs_flat.shape,true_masks_flat.shape)
             loss = criterion(masks_probs_flat, true_masks_flat)
