@@ -24,7 +24,7 @@ def train_net(net,
 
     dir_img = '/home/pengbo/project/datasets/TGS_Salt/train/images/'
     dir_mask = '/home/pengbo/project/datasets/TGS_Salt/train/masks/'
-    dir_checkpoint = 'checkpoints/'
+    dir_checkpoint = '/home/pengbo/project/Pytorch-UNet/checkpoints/'
 
     ids = get_ids(dir_img)
     ids = split_ids(ids)
