@@ -19,7 +19,7 @@ def train_net(net,
               lr=0.1,
               val_percent=0.05,
               save_cp=True,
-              gpu=False,
+              gpu=True,
               img_scale=0.5):
 
     dir_img = '/home/pengbo/project/datasets/TGS_Salt/train/images/'
