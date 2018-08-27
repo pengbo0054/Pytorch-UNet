@@ -25,7 +25,7 @@ class double_conv(nn.Module):
 class double_conv_up(nn.Module):
     '''(conv => BN => ReLU) * 2'''
     def __init__(self, in_ch, out_ch):
-        super(double_conv, self).__init__()
+        super(double_conv_up, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(in_ch, out_ch, 3),
             nn.BatchNorm2d(out_ch),
