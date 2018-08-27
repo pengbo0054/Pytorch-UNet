@@ -4,10 +4,10 @@ from .unet_parts import *
 
 start_fm = 16
 
-class Unet(nn.Module):
+class UNet(nn.Module):
     
     def __init__(self):
-        super(Unet, self).__init__()
+        super(UNet, self).__init__()
         
         # Input 128x128x1
         

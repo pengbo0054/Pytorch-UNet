@@ -4,8 +4,24 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
 class double_conv(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
+        super(double_conv, self).__init__()
+        self.conv = nn.Sequential(
+                    nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size,
+                              stride=stride, padding=padding),
+                    nn.BatchNorm2d(out_channels),
+                    nn.ReLU(inplace=True),
+                    nn.Conv2d(out_channels, out_channels, kernel_size=kernel_size,
+                              stride=stride, padding=padding),
+                    nn.BatchNorm2d(out_channels),
+                    nn.ReLU(inplace=True))
+        
+    def forward(self, x):
+        x = self.conv(x)
+        return x
+
+'''class double_conv(nn.Module):
     '''(conv => BN => ReLU) * 2'''
     def __init__(self, in_ch, out_ch):
         super(double_conv, self).__init__()
@@ -20,7 +36,7 @@ class double_conv(nn.Module):
 
     def forward(self, x):
         x = self.conv(x)
-        return x
+        return x'''
 
 
 class inconv(nn.Module):
