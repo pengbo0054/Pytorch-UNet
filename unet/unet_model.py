@@ -18,9 +18,9 @@ class UNet(nn.Module):
 
     def forward(self, x):
         x1 = self.inc(x)
+        print(x1.shape)
         x2 = self.down1(x1)
         x3 = self.down2(x2)
-        print(x3.shape)
         x4 = self.down3(x3)
         x5 = self.down4(x4)
         x = self.up1(x5, x4)
