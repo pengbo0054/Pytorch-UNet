@@ -13,7 +13,7 @@ def submit(net, gpu=False):
     dir = '/home/pengbo/project/datasets/TGS_Salt/images/'
 
     N = len(list(os.listdir(dir)))
-    with open('SUBMISSION.csv', 'a') as f:
+    with open('SUBMISSION2.csv', 'a') as f:
         f.write('id,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             print('{}/{}'.format(index, N))
