@@ -14,7 +14,7 @@ def submit(net, gpu=False):
 
     N = len(list(os.listdir(dir)))
     with open('SUBMISSION.csv', 'a') as f:
-        f.write('img,rle_mask\n')
+        f.write('id,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             print('{}/{}'.format(index, N))
 
