@@ -10,7 +10,7 @@ from unet import UNet
 
 def submit(net, gpu=False):
     """Used for Kaggle submission: predicts and encode all test images"""
-    dir = 'data/test/'
+    dir = '/home/pengbo/project/datasets/TGS_Salt/images/'
 
     N = len(list(os.listdir(dir)))
     with open('SUBMISSION.csv', 'a') as f:
@@ -27,5 +27,5 @@ def submit(net, gpu=False):
 
 if __name__ == '__main__':
     net = UNet(3, 1).cuda()
-    net.load_state_dict(torch.load('MODEL.pth'))
+    net.load_state_dict(torch.load('CP1.pth'))
     submit(net, True)
