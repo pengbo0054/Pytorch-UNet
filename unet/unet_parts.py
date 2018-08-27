@@ -15,7 +15,7 @@ class double_conv(nn.Module):
             nn.ReLU(inplace=True),
             nn.Conv2d(out_ch, out_ch, 3, padding=1),
             nn.BatchNorm2d(out_ch),
-            nn.ReLU()
+            nn.ReLU(inplace=True)
         )
 
     def forward(self, x):
@@ -55,7 +55,7 @@ class up(nn.Module):
         if bilinear:
             self.up = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=True)
         else:
-            self.up = nn.ConvTranspose2d(in_ch//2, in_ch//2, 2, stride=2)
+            self.up = nn.ConvTranspose2d(in_ch//2, in_ch//2, 2, stride=2，padding=1)
 
         self.conv = double_conv(in_ch, out_ch)
 
