@@ -22,8 +22,8 @@ def train_net(net,
               gpu=False,
               img_scale=0.5):
 
-    dir_img = 'data/train/'
-    dir_mask = 'data/train_masks/'
+    dir_img = '../datasets/TGS_Salt/train/images'
+    dir_mask = '../datasets/TGS_Salt/train/masks'
     dir_checkpoint = 'checkpoints/'
 
     ids = get_ids(dir_img)
