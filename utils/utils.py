@@ -66,7 +66,7 @@ def merge_masks(img1, img2, full_w):
 
 
 # credits to https://stackoverflow.com/users/6076729/manuel-lagunas
-def rle_encode(mask_image):
+'''def rle_encode(mask_image):
     pixels = mask_image.flatten()
     # We avoid issues with '1' at the start or end (at the corners of
     # the original image) by setting those pixels to '0' explicitly.
@@ -76,9 +76,9 @@ def rle_encode(mask_image):
     pixels[-1] = 0
     runs = np.where(pixels[1:] != pixels[:-1])[0] + 2
     runs[1::2] = runs[1::2] - runs[:-1:2]
-    return runs
+    return runs'''
 
-'''def rle_encoding(x):
+def rle_encoding(x):
     dots = np.where(x.T.flatten() == 1)[0]
     run_lengths = []
     prev = -2
@@ -86,4 +86,4 @@ def rle_encode(mask_image):
         if (b>prev+1): run_lengths.extend((b + 1, 0))
         run_lengths[-1] += 1
         prev = b
-    return run_lengths'''
+    return run_lengths
