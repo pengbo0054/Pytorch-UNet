@@ -22,23 +22,6 @@ class double_conv(nn.Module):
         x = self.conv(x)
         return x
 
-class double_conv_up(nn.Module):
-    '''(conv => BN => ReLU) * 2'''
-    def __init__(self, in_ch, out_ch):
-        super(double_conv_up, self).__init__()
-        self.conv = nn.Sequential(
-            nn.Conv2d(in_ch, out_ch, 3, padding=1),
-            nn.BatchNorm2d(out_ch),
-            nn.ReLU(inplace=True),
-            nn.Conv2d(out_ch, out_ch, 3),
-            nn.BatchNorm2d(out_ch),
-            nn.ReLU(inplace=True)
-        )
-
-    def forward(self, x):
-        x = self.conv(x)
-        return x
-
 class inconv(nn.Module):
     def __init__(self, in_ch, out_ch):
         super(inconv, self).__init__()
@@ -63,7 +46,7 @@ class down(nn.Module):
 
 
 class up(nn.Module):
-    def __init__(self, in_ch, out_ch, bilinear=True):
+    def __init__(self, in_ch, out_ch, bilinear=False):
         super(up, self).__init__()
 
         #  would be a nice idea if the upsampling could be learned too,
@@ -73,7 +56,7 @@ class up(nn.Module):
         else:
             self.up = nn.ConvTranspose2d(in_ch//2, in_ch//2, 2, stride=2)
 
-        self.conv = double_conv_up(in_ch, out_ch)
+        self.conv = double_conv(in_ch, out_ch)
 
     def forward(self, x1, x2):
         x1 = self.up(x1)
@@ -89,7 +72,7 @@ class up(nn.Module):
 class outconv(nn.Module):
     def __init__(self, in_ch, out_ch):
         super(outconv, self).__init__()
-        self.conv = nn.Conv2d(in_ch, out_ch, 1)
+        self.conv = nn.Conv2d(in_ch, out_ch, 1, padding=1)
 
     def forward(self, x):
         x = self.conv(x)
