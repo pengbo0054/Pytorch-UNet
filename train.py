@@ -12,6 +12,7 @@ from torch import optim
 from eval import eval_net
 from unet import UNet
 from utils import get_ids, split_ids, split_train_val, get_imgs_and_masks, batch
+import ipdb
 
 def train_net(net,
               epochs=5,
@@ -78,8 +79,8 @@ def train_net(net,
             masks_probs_flat = masks_probs.view(-1)
             
             true_masks_flat = true_masks.view(-1)
-            
-            loss = criterion(masks_probs_flat.clamp(1e-8,1-1e-7), true_masks_flat)
+            ipdb.set_trace()
+            loss = criterion(masks_probs_flat, true_masks_flat)
             epoch_loss += loss.item()
 
             print('{0:.4f} --- loss: {1:.6f}'.format(i * batch_size / N_train, loss.item()))
