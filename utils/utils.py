@@ -27,7 +27,7 @@ def resize_and_crop(pilimg, scale=0.5, final_height=None):
     else:
         diff = newH - final_height
 
-    img = pilimg.resize((newW, newH))
+    img = pilimg.resize((128, 128))
     img = img.crop((0, diff // 2, newW, newH - diff // 2))
     return np.array(img, dtype=np.float32)
 
