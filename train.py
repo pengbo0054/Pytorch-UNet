@@ -76,9 +76,9 @@ def train_net(net,
             print(imgs.shape,masks_pred.shape)
             masks_probs = F.sigmoid(masks_pred)
             masks_probs_flat = masks_probs.view(-1)
-            print(masks_probs.shape,true_masks.shape)
+            
             true_masks_flat = true_masks.view(-1)
-            print(masks_probs_flat.shape,true_masks_flat.shape)
+            
             loss = criterion(masks_probs_flat, true_masks_flat)
             epoch_loss += loss.item()
 
@@ -121,8 +121,8 @@ def get_args():
 
 if __name__ == '__main__':
     args = get_args()
-
-    net = UNet(n_channels=3, n_classes=1)
+    net = UNet()
+    #net = UNet(n_channels=3, n_classes=1)
 
     if args.load:
         net.load_state_dict(torch.load(args.load))
