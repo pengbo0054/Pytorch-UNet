@@ -16,8 +16,8 @@ from utils import get_ids, split_ids, split_train_val, get_imgs_and_masks, batch
 def train_net(net,
               epochs=5,
               batch_size=1,
-              lr=0.1,
-              val_percent=0.05,
+              lr=0.001,
+              val_percent=0.2,
               save_cp=True,
               gpu=True,
               img_scale=0.5):
@@ -48,7 +48,7 @@ def train_net(net,
     optimizer = optim.SGD(net.parameters(),
                           lr=lr,
                           momentum=0.9,
-                          weight_decay=0.0005)
+                          weight_decay=0.000005)
 
     criterion = nn.BCELoss()
 
@@ -106,7 +106,7 @@ def get_args():
                       help='number of epochs')
     parser.add_option('-b', '--batch-size', dest='batchsize', default=128,
                       type='int', help='batch size')
-    parser.add_option('-l', '--learning-rate', dest='lr', default=0.001,
+    parser.add_option('-l', '--learning-rate', dest='lr', default=0.00001,
                       type='float', help='learning rate')
     parser.add_option('-g', '--gpu', action='store_true', dest='gpu',
                       default=False, help='use cuda')
