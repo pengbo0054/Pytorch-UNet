@@ -55,7 +55,7 @@ class up(nn.Module):
         if bilinear:
             self.up = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=True)
         else:
-            self.up = nn.ConvTranspose2d(in_ch//2, in_ch//2, 2, stride=2, padding=1)
+            self.up = nn.ConvTranspose2d(in_ch//2, in_ch//2, 2, stride=2)
 
         self.conv = double_conv(in_ch, out_ch)
 
