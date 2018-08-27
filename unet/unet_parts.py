@@ -22,7 +22,7 @@ class double_conv(nn.Module):
         return x
 
 '''class double_conv(nn.Module):
-    '''(conv => BN => ReLU) * 2'''
+    #(conv => BN => ReLU) * 2
     def __init__(self, in_ch, out_ch):
         super(double_conv, self).__init__()
         self.conv = nn.Sequential(
