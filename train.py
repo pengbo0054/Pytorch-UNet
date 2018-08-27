@@ -81,6 +81,7 @@ def train_net(net,
             true_masks_flat = true_masks.view(-1)
             ipdb.set_trace()
             loss = criterion(masks_probs_flat, true_masks_flat)
+            print(true_masks_flat)
             epoch_loss += loss.item()
 
             print('{0:.4f} --- loss: {1:.6f}'.format(i * batch_size / N_train, loss.item()))
