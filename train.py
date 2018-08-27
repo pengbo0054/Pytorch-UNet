@@ -82,7 +82,7 @@ def train_net(net,
             true_masks_flat = true_masks.view(-1)
             #ipdb.set_trace()
             loss = criterion(masks_probs_flat, true_masks_flat)
-            print(true_masks_flat)
+            #print(true_masks_flat)
             epoch_loss += loss.item()
 
             print('{0:.4f} --- loss: {1:.6f}'.format(i * batch_size / N_train, loss.item()))
@@ -106,11 +106,11 @@ def train_net(net,
 
 def get_args():
     parser = OptionParser()
-    parser.add_option('-e', '--epochs', dest='epochs', default=5, type='int',
+    parser.add_option('-e', '--epochs', dest='epochs', default=20, type='int',
                       help='number of epochs')
-    parser.add_option('-b', '--batch-size', dest='batchsize', default=16,
+    parser.add_option('-b', '--batch-size', dest='batchsize', default=32,
                       type='int', help='batch size')
-    parser.add_option('-l', '--learning-rate', dest='lr', default=0.00001,
+    parser.add_option('-l', '--learning-rate', dest='lr', default=0.001,
                       type='float', help='learning rate')
     parser.add_option('-g', '--gpu', action='store_true', dest='gpu',
                       default=False, help='use cuda')
