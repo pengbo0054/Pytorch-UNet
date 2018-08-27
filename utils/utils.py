@@ -17,7 +17,7 @@ def hwc_to_chw(img):
     return np.transpose(img, axes=[2, 0, 1])
 
 def resize_and_crop(pilimg, scale=0.5, final_height=None):
-    w = pilimg.size[0]
+    '''w = pilimg.size[0]
     h = pilimg.size[1]
     newW = int(w * scale)
     newH = int(h * scale)
@@ -25,7 +25,7 @@ def resize_and_crop(pilimg, scale=0.5, final_height=None):
     if not final_height:
         diff = 0
     else:
-        diff = newH - final_height
+        diff = newH - final_height'''
 
     img = pilimg.resize((128, 128))
     #img = img.crop((0, diff // 2, newW, newH - diff // 2))
