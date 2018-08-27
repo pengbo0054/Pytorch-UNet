@@ -8,7 +8,7 @@ from utils import rle_encode
 from unet import UNet
 
 
-def submit(net, gpu=False):
+def submit(net, gpu=True):
     """Used for Kaggle submission: predicts and encode all test images"""
     dir = '/home/pengbo/project/datasets/TGS_Salt/images/'
 
