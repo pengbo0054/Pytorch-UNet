@@ -43,7 +43,7 @@ def batch(iterable, batch_size):
     if len(b) > 0:
         yield b
 
-def split_train_val(dataset, val_percent=0.05):
+def split_train_val(dataset, val_percent=0.1):
     dataset = list(dataset)
     length = len(dataset)
     n = int(length * val_percent)
