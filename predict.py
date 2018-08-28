@@ -19,6 +19,7 @@ def predict_img(net,
                 out_threshold=0.5,
                 use_dense_crf=True,
                 use_gpu=True):
+    img_height = full_img.size[1]
     img = full_img.resize((128,128))
     img = np.array(img, dtype=np.float32)
     imgs_switched = hwc_to_chw(img)
