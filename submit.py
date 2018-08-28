@@ -6,7 +6,7 @@ import torch
 from predict import predict_img
 from utils import rle_encode
 from unet import UNet
-
+import ipdb
 
 def submit(net, gpu=False):
     """Used for Kaggle submission: predicts and encode all test images"""
@@ -21,7 +21,7 @@ def submit(net, gpu=False):
             img = Image.open(dir + i)
 
             mask = predict_img(net, img, gpu)
-            
+            ipdb.set_trace()
             enc = rle_encode(mask)
             f.write('{},{}\n'.format(i.split('.')[0], ' '.join(map(str, enc))))
 

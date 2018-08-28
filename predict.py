@@ -19,7 +19,7 @@ def predict_img(net,
                 out_threshold=0.5,
                 use_dense_crf=True,
                 use_gpu=True):
-    full_img = full_img.resize((128,128))
+    #full_img = full_img.resize((128,128))
     img_height = full_img.size[1]
     img_width = full_img.size[0]
     
