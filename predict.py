@@ -23,6 +23,9 @@ def predict_img(net,
     img = np.array(img, dtype=np.float32)
     imgs_switched = map(hwc_to_chw, img)
     imgs_normalized = map(normalize, imgs_switched)
+    imgs_normalized = torch.from_numpy(imgs_normalized).unsqueeze(0)
+    if use_gpu:
+        imgs_normalized = imgs_normalized.cuda()
     with torch.no_grad():
         output = net(imgs_normalized)
         prob = torch.sigmoid(output).squeeze(0)
