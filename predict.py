@@ -58,7 +58,7 @@ def predict_img(net,
 
         left_mask_np = left_probs.squeeze().cpu().numpy()
         right_mask_np = right_probs.squeeze().cpu().numpy()
-        print(left_mask_np.shape, right_mask_np.shape)
+        #print(left_mask_np.shape, right_mask_np.shape)
     full_mask = merge_masks(left_mask_np, right_mask_np, img_width)
 
     if use_dense_crf:
