@@ -19,7 +19,25 @@ def predict_img(net,
                 out_threshold=0.5,
                 use_dense_crf=True,
                 use_gpu=True):
-    #full_img = full_img.resize((128,128))
+    img = full_img.resize((128,128))
+    img = np.array(img, dtype=np.float32)
+    imgs_switched = map(hwc_to_chw, img)
+    imgs_normalized = map(normalize, imgs_switched)
+    with torch.no_grad():
+        output = net(imgs_normalized)
+        prob = torch.sigmoid(output).squeeze(0)
+        
+        tf = transforms.Compose(
+            [
+                transforms.ToPILImage(),
+                transforms.Resize(img_height),
+                transforms.ToTensor()
+            ]
+        )
+        
+        prob = tf(prob.cpu())
+        full_mask = prob.squeeze().cpu().numpy()
+    '''#full_img = full_img.resize((128,128))
     img_height = full_img.size[1]
     img_width = full_img.size[0]
     
@@ -59,7 +77,7 @@ def predict_img(net,
         left_mask_np = left_probs.squeeze().cpu().numpy()
         right_mask_np = right_probs.squeeze().cpu().numpy()
         #print(left_mask_np.shape, right_mask_np.shape)
-    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)
+    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)'''
 
     if use_dense_crf:
         full_mask = dense_crf(np.array(full_img).astype(np.uint8), full_mask)
