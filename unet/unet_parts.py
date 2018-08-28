@@ -13,11 +13,9 @@ class double_conv(nn.Module):
             nn.Conv2d(in_ch, out_ch, 3, padding=1),
             nn.BatchNorm2d(out_ch),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.5),
             nn.Conv2d(out_ch, out_ch, 3, padding=1),
             nn.BatchNorm2d(out_ch),
             nn.ReLU(inplace=True),
-            nn.Dropout(0.5)
         )
 
     def forward(self, x):
@@ -35,10 +33,11 @@ class inconv(nn.Module):
 
 
 class down(nn.Module):
-    def __init__(self, in_ch, out_ch):
+    def __init__(self, in_ch, out_ch, droprate):
         super(down, self).__init__()
         self.mpconv = nn.Sequential(
             nn.MaxPool2d(2),
+            nn.Dropout(droprate),
             double_conv(in_ch, out_ch)
         )
 
@@ -48,7 +47,7 @@ class down(nn.Module):
 
 
 class up(nn.Module):
-    def __init__(self, in_ch, out_ch, bilinear=False):
+    def __init__(self, in_ch, out_ch, droprate, bilinear=False):
         super(up, self).__init__()
 
         #  would be a nice idea if the upsampling could be learned too,
@@ -60,13 +59,14 @@ class up(nn.Module):
 
         self.conv = double_conv(in_ch, out_ch)
 
-    def forward(self, x1, x2):
+    def forward(self, x1, x2, droprate):
         x1 = self.up(x1)
         diffX = x1.size()[2] - x2.size()[2]
         diffY = x1.size()[3] - x2.size()[3]
         x2 = F.pad(x2, (diffX // 2, int(diffX / 2),
                         diffY // 2, int(diffY / 2)))
         x = torch.cat([x2, x1], dim=1)
+        x = nn.Dropout(droprate)(x)
         x = self.conv(x)
         return x
 
