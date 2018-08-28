@@ -21,6 +21,7 @@ def submit(net, gpu=False):
             img = Image.open(dir + i)
 
             mask = predict_img(net, img, gpu)
+            mask = mask.resize((101,101))
             enc = rle_encode(mask)
             f.write('{},{}\n'.format(i, ' '.join(map(str, enc))))
 
