@@ -79,7 +79,7 @@ def merge_masks(img1, img2, full_w):
     return runs'''
 
 def rle_encode(x):
-    dots = np.where(x.flatten() == 1)[0]
+    dots = np.where(x.T.flatten() == 1)[0]
     run_lengths = []
     prev = -2
     for b in dots:
