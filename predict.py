@@ -21,8 +21,8 @@ def predict_img(net,
                 use_gpu=True):
     img = full_img.resize((128,128))
     img = np.array(img, dtype=np.float32)
-    imgs_switched = map(hwc_to_chw, img)
-    imgs_normalized = map(normalize, imgs_switched)
+    imgs_switched = hwc_to_chw(img)
+    imgs_normalized = normalize(imgs_switched)
     imgs_normalized = torch.from_numpy(imgs_normalized).unsqueeze(0)
     if use_gpu:
         imgs_normalized = imgs_normalized.cuda()
