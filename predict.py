@@ -19,7 +19,7 @@ def predict_img(net,
                 out_threshold=0.5,
                 use_dense_crf=True,
                 use_gpu=True):
-    full_img = full_img.resize((128,128))
+    
     img_height = full_img.size[1]
     img_width = full_img.size[0]
 
@@ -42,8 +42,8 @@ def predict_img(net,
         output_left = net(X_left)
         output_right = net(X_right)
 
-        left_probs = F.sigmoid(output_left).squeeze(0)
-        right_probs = F.sigmoid(output_right).squeeze(0)
+        left_probs = torch.sigmoid(output_left).squeeze(0)
+        right_probs = torch.sigmoid(output_right).squeeze(0)
 
         tf = transforms.Compose(
             [
@@ -58,7 +58,7 @@ def predict_img(net,
 
         left_mask_np = left_probs.squeeze().cpu().numpy()
         right_mask_np = right_probs.squeeze().cpu().numpy()
-
+        print(left_mask_np.shape, right_mask_np.shape)
     full_mask = merge_masks(left_mask_np, right_mask_np, img_width)
 
     if use_dense_crf:
