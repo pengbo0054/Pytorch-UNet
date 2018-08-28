@@ -13,7 +13,7 @@ def submit(net, gpu=False):
     dir = '/home/pengbo/project/datasets/TGS_Salt/images/'
 
     N = len(list(os.listdir(dir)))
-    with open('SUBMISSION2.csv', 'a') as f:
+    with open('SUBMISSION.csv', 'a') as f:
         f.write('id,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             print('{}/{}'.format(index, N))
@@ -28,5 +28,5 @@ def submit(net, gpu=False):
 
 if __name__ == '__main__':
     net = UNet(3, 1).cuda()
-    net.load_state_dict(torch.load('./checkpoints/CP1.pth'))
+    net.load_state_dict(torch.load('./checkpoints/CP96.pth'))
     submit(net, True)
