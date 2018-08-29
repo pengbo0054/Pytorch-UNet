@@ -28,5 +28,5 @@ def submit(net, gpu=False):
 
 if __name__ == '__main__':
     net = UNet(3, 1).cuda()
-    net.load_state_dict(torch.load('./checkpoints/CP100.pth'))
+    net.load_state_dict(torch.load('./checkpoints/CP500.pth'))
     submit(net, True)
