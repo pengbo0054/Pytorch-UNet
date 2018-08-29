@@ -21,7 +21,7 @@ def submit(net, gpu=False):
             img = Image.open(dir + i)
 
             mask = predict_img(net, img, gpu)
-            ipdb.set_trace()
+            #ipdb.set_trace()
             enc = rle_encode(mask)
             f.write('{},{}\n'.format(i.split('.')[0], ' '.join(map(str, enc))))
 

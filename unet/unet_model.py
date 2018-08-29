@@ -6,14 +6,14 @@ class UNet(nn.Module):
     def __init__(self, n_channels, n_classes):
         super(UNet, self).__init__()
         self.inc = inconv(n_channels, 64)
-        self.down1 = down(64, 128, 0.25)
-        self.down2 = down(128, 256, 0.5)
-        self.down3 = down(256, 512, 0.5)
-        self.down4 = down(512, 512, 0.5)
-        self.up1 = up(1024, 256, 0.5)
-        self.up2 = up(512, 128, 0.5)
-        self.up3 = up(256, 64, 0.5)
-        self.up4 = up(128, 64, 0.5)
+        self.down1 = down(64, 128, 0)
+        self.down2 = down(128, 256, 0)
+        self.down3 = down(256, 512, 0)
+        self.down4 = down(512, 512, 0)
+        self.up1 = up(1024, 256, 0)
+        self.up2 = up(512, 128, 0)
+        self.up3 = up(256, 64, 0)
+        self.up4 = up(128, 64, 0)
         self.outc = outconv(64, n_classes)
 
     def forward(self, x):
