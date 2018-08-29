@@ -13,13 +13,13 @@ from utils import plot_img_and_mask
 
 from torchvision import transforms
 
-'''def predict_img(net,
+def predict_img(net,
                 full_img,
                 scale_factor=0.5,
                 out_threshold=0.7,
                 use_dense_crf=True,
                 use_gpu=True):
-    img_height = full_img.size[1]
+    '''img_height = full_img.size[1]
     img = full_img.resize((128,128))
     img = np.array(img, dtype=np.float32)
     imgs_switched = hwc_to_chw(img)
