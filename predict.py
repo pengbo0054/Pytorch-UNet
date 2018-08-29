@@ -40,8 +40,8 @@ def predict_img(net,
         )
         
         prob = tf(prob.cpu())
-        full_mask = prob.squeeze().cpu().numpy()'''
-    #full_img = full_img.resize((128,128))
+        full_mask = prob.squeeze().cpu().numpy()
+    '''#full_img = full_img.resize((128,128))
     img_height = full_img.size[1]
     img_width = full_img.size[0]
     
