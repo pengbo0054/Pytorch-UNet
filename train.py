@@ -65,7 +65,7 @@ def train_net(net,
         for i, b in enumerate(batch(train, batch_size)):
             imgs = np.array([i[0] for i in b]).astype(np.float32)
             true_masks = np.array([i[1] for i in b])
-            ipdb.set_trace()
+            #ipdb.set_trace()
             imgs = torch.from_numpy(imgs)
             true_masks = torch.from_numpy(true_masks)
             
@@ -76,7 +76,7 @@ def train_net(net,
             masks_pred = net(imgs)
             #print(imgs.shape, masks_pred.shape)
             masks_probs = torch.sigmoid(masks_pred)
-            true_masks = true_masks/65535
+            true_masks = true_masks != 0
             masks_probs_flat = masks_probs.view(-1)
             
             true_masks_flat = true_masks.view(-1)
