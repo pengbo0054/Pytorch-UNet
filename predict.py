@@ -19,7 +19,7 @@ def predict_img(net,
                 out_threshold=0.7,
                 use_dense_crf=True,
                 use_gpu=True):
-    '''img_height = full_img.size[1]
+    img_height = full_img.size[1]
     img = full_img.resize((128,128))
     img = np.array(img, dtype=np.float32)
     imgs_switched = hwc_to_chw(img)
@@ -81,7 +81,7 @@ def predict_img(net,
         left_mask_np = left_probs.squeeze().cpu().numpy()
         right_mask_np = right_probs.squeeze().cpu().numpy()
         #print(left_mask_np.shape, right_mask_np.shape)
-    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)
+    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)'''
 
     if use_dense_crf:
         full_mask = dense_crf(np.array(full_img).astype(np.uint8), full_mask)
