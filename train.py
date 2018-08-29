@@ -74,13 +74,14 @@ def train_net(net,
                 true_masks = true_masks.cuda()
 
             masks_pred = net(imgs)
+            masks_pred = masks_pred.squeeze()
             #print(imgs.shape, masks_pred.shape)
             #masks_probs = torch.sigmoid(masks_pred)
             true_masks = true_masks != 0
             #masks_probs_flat = masks_probs.view(-1)
             
             #true_masks_flat = true_masks.view(-1)
-            ipdb.set_trace()
+            #ipdb.set_trace()
             loss = criterion(masks_probs_flat, true_masks_flat)
             #print(true_masks_flat)
             epoch_loss += loss.item()
