@@ -77,7 +77,7 @@ def train_net(net,
             masks_pred = masks_pred.squeeze()
             #print(imgs.shape, masks_pred.shape)
             masks_probs = torch.sigmoid(masks_pred)
-            true_masks = true_masks != 0
+            true_masks = (true_masks != 0).astype(np.int32)
             masks_probs_flat = masks_probs.view(-1)
             
             true_masks_flat = true_masks.view(-1)
