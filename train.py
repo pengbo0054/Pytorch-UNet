@@ -82,7 +82,7 @@ def train_net(net,
             
             #true_masks_flat = true_masks.view(-1)
             #ipdb.set_trace()
-            loss = criterion(masks_probs_flat, true_masks_flat)
+            loss = criterion(masks_pred, true_masks)
             #print(true_masks_flat)
             epoch_loss += loss.item()
 
