@@ -13,7 +13,7 @@ from utils import plot_img_and_mask
 
 from torchvision import transforms
 
-def predict_img(net,
+'''def predict_img(net,
                 full_img,
                 scale_factor=0.5,
                 out_threshold=0.7,
@@ -40,8 +40,8 @@ def predict_img(net,
         )
         
         prob = tf(prob.cpu())
-        full_mask = prob.squeeze().cpu().numpy()
-    '''#full_img = full_img.resize((128,128))
+        full_mask = prob.squeeze().cpu().numpy()'''
+    #full_img = full_img.resize((128,128))
     img_height = full_img.size[1]
     img_width = full_img.size[0]
     
@@ -81,7 +81,7 @@ def predict_img(net,
         left_mask_np = left_probs.squeeze().cpu().numpy()
         right_mask_np = right_probs.squeeze().cpu().numpy()
         #print(left_mask_np.shape, right_mask_np.shape)
-    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)'''
+    full_mask = merge_masks(left_mask_np, right_mask_np, img_width)
 
     if use_dense_crf:
         full_mask = dense_crf(np.array(full_img).astype(np.uint8), full_mask)
