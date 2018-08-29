@@ -115,7 +115,7 @@ def get_args():
                         default=False)
     parser.add_argument('--mask-threshold', '-t', type=float,
                         help="Minimum probability value to consider a mask pixel white",
-                        default=0.5)
+                        default=0.7)
     parser.add_argument('--scale', '-s', type=float,
                         help="Scale factor for the input images",
                         default=0.5)
