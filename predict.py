@@ -82,7 +82,7 @@ def predict_img(net,
         right_mask_np = right_probs.squeeze().cpu().numpy()
         #print(left_mask_np.shape, right_mask_np.shape)
     full_mask = merge_masks(left_mask_np, right_mask_np, img_width)'''
-
+    ipdb.set_trace()
     if use_dense_crf:
         full_mask = dense_crf(np.array(full_img).astype(np.uint8), full_mask)
 
